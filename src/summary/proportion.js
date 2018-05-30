@@ -4,9 +4,8 @@
  */
 
 
-const Util = require('@ali/g-util');
+const Util = require('../util');
 const Summary = require('./summary');
-const Frame = require('@ali/g-frame');
 const Mixin = require('./percent-mixin');
 
 const Proportion = function(dims, innerCompare) {
@@ -16,11 +15,11 @@ const Proportion = function(dims, innerCompare) {
     initDims(dims) {
       dims.push('..proportion');
     },
-    transform(frame, name, totalFrame) {
-      const percent = frame.rowCount() / totalFrame.rowCount();
-      const obj = frame.rowObject(0);
+    transform(array, name, totalArray) {
+      const percent = array.length / totalArray.length;
+      const obj = Util.mix({}, array[0]);
       obj[name] = percent;
-      return new Frame([ obj ]);
+      return [ obj ];
     }
   }, Mixin));
 };

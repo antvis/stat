@@ -135,5 +135,40 @@ describe('test summary', () => {
     });
   });
 
+  describe('percent', () => {
+    it('proportion', function() {
+      const stat = summary.proportion('x');
+      stat.init();
+      const nf = stat.exec([ data ])[0];
+      expect(nf.length).equal(3);
+    });
+
+    it('group proportion', function() {
+
+      const dataArray = Util.arrayUtil.group(data, [ 'z' ]);
+      const stat = summary.proportion('x');
+      stat.init();
+      const nf = stat.exec(dataArray)[0];
+      expect(nf.length).equal(3);
+      expect(nf[0]['..proportion']).equal(0.5);
+    });
+
+    it('proportion multiple dim', function() {
+      const stat = summary.proportion('x*z', true);
+      stat.init();
+      const nf = stat.exec([ data ])[0];
+      expect(nf[0]['..proportion']).equal(0.125);
+    });
+
+
+    it('percent', function() {
+
+      const stat = summary.percent('x*y');
+      stat.init();
+      const dataArray = Util.arrayUtil.group(data, [ 'z' ]);
+      const nf = stat.exec(dataArray)[0];
+      expect(nf[0]['..percent']).equal(0.5);
+    });
+  });
 
 });

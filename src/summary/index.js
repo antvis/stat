@@ -2,13 +2,7 @@ const Summary = require('./summary');
 
 require('./aggregate');
 Summary.cumulative = require('./cumulative');
-
-/*
-{
-  proportion: require('./proportion'),
-  percent: require('./percent')
-
-
-};*/
+Summary.proportion = require('./proportion');
+Summary.percent = require('./percent');
 
 module.exports = Summary;

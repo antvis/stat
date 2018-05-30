@@ -4,11 +4,16 @@
  */
 
 
-const Util = require('@ali/g-util');
+const Util = require('../util');
 const Summary = require('./summary');
-const Frame = require('@ali/g-frame');
 const Mixin = require('./percent-mixin');
 const STR_PERCENT = '..percent';
+const Statistic = require('simple-statistics');
+
+function getSum(arr, name) {
+  const values = Util.arrayUtil.colValues(arr, name);
+  return Statistic.sum(values);
+}
 
 const Percent = function(dims, innerCompare) {
   return new Summary(Util.mix({
@@ -23,18 +28,18 @@ const Percent = function(dims, innerCompare) {
     getStatDims() {
       return [ STR_PERCENT ];
     },
-    transform(frame, name, totalFrame) {
+    transform(arr, name, totalArray) {
       name = this.percetDim;
 
-      const sum = Frame.sum(frame, name);
-      const totalSum = Frame.sum(totalFrame, name);
-      const obj = frame.rowObject(0);
+      const sum = getSum(arr, name);
+      const totalSum = getSum(totalArray, name);
+      const obj = Util.mix({}, arr[0]);
 
       obj['..percent'] = sum / totalSum;
       // obj[name] = totalSum;
       obj[name] = sum;
 
-      return new Frame([ obj ]);
+      return [ obj ];
     }
   }, Mixin));
 };

@@ -76,5 +76,6 @@ function groupToMap(array, condition) {
   return groups;
 }
 
+Util.arrayUtil.groupToMap = groupToMap;
 
 module.exports = Util;
