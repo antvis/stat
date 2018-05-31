@@ -8,10 +8,10 @@ const Util = require('../util');
 const Summary = require('./summary');
 const Mixin = require('./percent-mixin');
 const STR_PERCENT = '..percent';
-const Statistic = require('simple-statistics');
+const Statistic = require('../statistics');
 
 function getSum(arr, name) {
-  const values = Util.arrayUtil.colValues(arr, name);
+  const values = Util.colValues(arr, name);
   return Statistic.sum(values);
 }
 

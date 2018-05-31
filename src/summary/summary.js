@@ -53,7 +53,7 @@ class Summary extends Stat {
     let group;
     const condition = self.getGroupCondition();
     if (condition) {
-      group = Util.arrayUtil.group(array, condition);
+      group = Util.group(array, condition);
     } else {
       group = [ array ];
     }
@@ -78,7 +78,7 @@ class Summary extends Stat {
     const groups = self.groupData(arr);
     const arrs = self.transformGroup(groups, dim);
     // 统计完成的数据进行合并
-    const mergedArray = Util.arrayUtil.merge(arrs);
+    const mergedArray = Util.merge(arrs);
     return mergedArray;
   }
 

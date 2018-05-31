@@ -1,12 +1,14 @@
 const expect = require('chai').expect;
 const Util = require('../../src/util');
+const Statistics = require('../../src/statistics');
+
 
 describe('test util array', () => {
 
   it('test merge', function() {
     const arr1 = [ 'a', 'b', 'c' ];
     const arr2 = [ 'd', 'e', 'f' ];
-    const rst = Util.arrayUtil.merge([ arr1, arr2 ]);
+    const rst = Util.merge([ arr1, arr2 ]);
     expect(rst.length).equal(6);
   });
 
@@ -18,7 +20,7 @@ describe('test util array', () => {
       { x: [ 1, 2 ], y: 4 },
       { x: [ 3, 4 ], y: 7 }
     ];
-    const groups = Util.arrayUtil.group(data, [ 'x' ]);
+    const groups = Util.group(data, [ 'x' ]);
     expect(groups.length).equal(2);
   });
 
@@ -35,8 +37,12 @@ describe('test util array', () => {
       { name: 206, carat: 0.78, cut: 'Premium', color: 'F', clarity: 'SI1', depth: 62.4, table: 58, price: 2777, x: 5.83, y: 5.8, z: 3.63 },
       { name: 507, carat: 0.7, cut: 'Ideal', color: 'D', clarity: 'SI1', depth: 61.8, table: 56, price: 2822, x: 5.73, y: 5.63, z: 3.51 }
     ];
-    expect(Util.arrayUtil.group(data, [ 'cut' ]).length).equal(4);
-    expect(Util.arrayUtil.group(data, [ 'cut', 'color' ]).length).equal(8);
+    expect(Util.group(data, [ 'cut' ]).length).equal(4);
+    expect(Util.group(data, [ 'cut', 'color' ]).length).equal(8);
+  });
+
+  it('stat method', () => {
+    expect(Statistics.min).not.equal(undefined);
   });
 
 });

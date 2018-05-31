@@ -54,7 +54,7 @@ describe('test summary', () => {
     });
 
     it('multiple datas', function() {
-      const dataArray = Util.arrayUtil.group(data, 'z');
+      const dataArray = Util.group(data, 'z');
       const stat = summary.count('x');
       stat.init();
       const nfs = stat.exec(dataArray);
@@ -145,7 +145,7 @@ describe('test summary', () => {
 
     it('group proportion', function() {
 
-      const dataArray = Util.arrayUtil.group(data, [ 'z' ]);
+      const dataArray = Util.group(data, [ 'z' ]);
       const stat = summary.proportion('x');
       stat.init();
       const nf = stat.exec(dataArray)[0];
@@ -165,7 +165,7 @@ describe('test summary', () => {
 
       const stat = summary.percent('x*y');
       stat.init();
-      const dataArray = Util.arrayUtil.group(data, [ 'z' ]);
+      const dataArray = Util.group(data, [ 'z' ]);
       const nf = stat.exec(dataArray)[0];
       expect(nf[0]['..percent']).equal(0.5);
     });

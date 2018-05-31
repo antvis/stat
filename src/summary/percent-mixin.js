@@ -14,9 +14,9 @@ module.exports = {
       arrs = this.stat.exec(arrs);
     }
     const rst = [];
-    const totalData = Util.arrayUtil.merge(arrs);
+    const totalData = Util.merge(arrs);
     const condition = self.getGroupCondition();
-    const totalGroup = Util.arrayUtil.groupToMap(totalData, condition);
+    const totalGroup = Util.groupToMap(totalData, condition);
 
     Util.each(arrs, function(arr) {
       let sub;
@@ -32,7 +32,7 @@ module.exports = {
   execArray(arr, totalGroup) {
     const self = this;
     const condition = self.getGroupCondition();
-    const groups = Util.arrayUtil.groupToMap(arr, condition);
+    const groups = Util.groupToMap(arr, condition);
     const rst = [];
     const dim = self.getStatDims()[0];
 
@@ -43,6 +43,6 @@ module.exports = {
         rst.push(tmp);
       }
     });
-    return Util.arrayUtil.merge(rst);
+    return Util.merge(rst);
   }
 };

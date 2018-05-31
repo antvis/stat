@@ -6,7 +6,7 @@
 const Util = require('../util');
 const Summary = require('./summary');
 const aggregates = [ 'sum', 'mean', 'max', 'min', 'mode', 'median', 'variance' ];
-const Statistic = require('simple-statistics');
+const Statistic = require('../statistics');
 
 class Aggregate extends Summary {
 
@@ -18,7 +18,7 @@ class Aggregate extends Summary {
     const rst = [];
     if (this.aggregateType && array.length) {
       const obj = Util.mix({}, array[0]);
-      const values = Util.arrayUtil.colValues(array, dim);
+      const values = Util.colValues(array, dim);
       obj[dim] = this.getAggregateValue(values);
       rst.push(obj);
     }
