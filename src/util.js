@@ -1,10 +1,10 @@
 const Util = {
-  each: require('@antv/util/src/each'),
-  mix: require('@antv/util/src/mix'),
-  isString: require('@antv/util/src/type/isString'),
-  isFunction: require('@antv/util/src/type/isFunction'),
-  isNil: require('@antv/util/src/type/isNil'),
-  isArray: require('@antv/util/src/type/isArray'),
+  each: require('@antv/util/lib/each'),
+  mix: require('@antv/util/lib/mix'),
+  isString: require('@antv/util/lib/type/isString'),
+  isFunction: require('@antv/util/lib/type/isFunction'),
+  isNil: require('@antv/util/lib/type/isNil'),
+  isArray: require('@antv/util/lib/type/isArray'),
   merge(dataArray) {
     let rst = [];
     for (let i = 0; i < dataArray.length; i++) {
@@ -26,7 +26,7 @@ const Util = {
     return arrays;
   },
   colValues(data, field) {
-    const rst = [];
+    let rst = [];
     for (let i = 0; i < data.length; i++) {
       const obj = data[i];
       const value = obj[field];
@@ -34,7 +34,7 @@ const Util = {
         if (!Util.isArray(value)) {
           rst.push(value);
         } else {
-          rst.concat(value);
+          rst = rst.concat(value);
         }
       }
     }
@@ -44,6 +44,26 @@ const Util = {
     return array.sort(function(obj1, obj2) {
       return obj1[field] - obj2[field];
     });
+  },
+  range(array, field) {
+    let max = -Infinity;
+    let min = Infinity;
+    for (let i = 0; i < array.length; i++) {
+      const obj = array[i];
+      if (obj && !Util.isNil(obj[field])) {
+        const value = obj[field];
+        if (value > max) {
+          max = value;
+        }
+        if (value < min) {
+          min = value;
+        }
+      }
+    }
+    if (max < min) {
+      max = min;
+    }
+    return [ min, max ];
   },
   groupToMap
 };

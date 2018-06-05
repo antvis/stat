@@ -7,5 +7,6 @@ module.exports = {
   mode: require('simple-statistics/src/mode'),
   median: require('simple-statistics/src/median'),
   variance: require('simple-statistics/src/variance'),
-  standardDeviation: require('simple-statistics/src/standard_deviation')
+  standardDeviation: require('simple-statistics/src/standard_deviation'),
+  quantile: require('simple-statistics/src/quantile')
 };
