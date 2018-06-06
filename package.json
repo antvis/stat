@@ -1,8 +1,8 @@
 {
   "name": "@antv/stat",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "the Grammar of Graphics in Javascript",
-  "main": "lib/stat.js",
+  "main": "lib/index.js",
   "browser": "build/stat.js",
   "module": "src/index.js",
   "homepage": "https://github.com/antvis/stat",
