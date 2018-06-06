@@ -60,6 +60,13 @@ describe('stat bin', function() {
       expect(obj.x[0]).equal(90);
       expect(obj.y).equal(91);
     });
+    it('no dim', function() {
+      const stat1 = Stat.bin.rect();
+      stat1.init();
+      expect(() => {
+        stat1.exec([ data ]);
+      }).to.throw();
+    });
   });
 
   describe('bin quantile', function() {
@@ -98,6 +105,13 @@ describe('stat bin', function() {
       const first = nf[0];
       expect(first.x.length).equal(6);
       expect(first.x.length).equal(6);
+    });
+    it('one dim', function() {
+      const stat1 = Stat.bin.hex('x', 0.1);
+      stat1.init();
+      expect(() => {
+        stat1.exec([ data ]);
+      }).to.throw();
     });
 
   });

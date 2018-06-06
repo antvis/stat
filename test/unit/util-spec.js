@@ -23,6 +23,7 @@ describe('test util array', () => {
     const groups = Util.group(data, [ 'x' ]);
     expect(groups.length).equal(2);
     expect(Util.group(data).length).equal(1);
+
   });
   it('colValues', function() {
     const data = [
@@ -30,7 +31,8 @@ describe('test util array', () => {
       { x: [ 3, 4 ], y: 8 },
 
       { x: [ 1, 2 ], y: 4 },
-      { x: [ 3, 4 ], y: 7 }
+      { x: [ 3, 4 ], y: 7 },
+      { x: null, y: null }
     ];
     expect(Util.colValues(data, 'x').length).eqls(8);
     expect(Util.colValues(data, 'y')).eqls([ 10, 8, 4, 7 ]);
@@ -40,10 +42,12 @@ describe('test util array', () => {
       { x: 1, y: 1 },
       { x: 5, y: 2 },
       { x: 3, y: 10 },
-      { x: 6, y: 0 }
+      { x: 6, y: 0 },
+      { x: null, y: null }
     ];
     expect(Util.range(data, 'x')).eqls([ 1, 6 ]);
     expect(Util.range(data, 'y')).eqls([ 0, 10 ]);
+    expect(Util.range([], 'x')).eqls([ -Infinity, -Infinity ]);
   });
   it('sort', function() {
     const data = [
@@ -71,6 +75,11 @@ describe('test util array', () => {
     ];
     expect(Util.group(data, [ 'cut' ]).length).equal(4);
     expect(Util.group(data, [ 'cut', 'color' ]).length).equal(8);
+  });
+
+  it('test group map', () => {
+    const groups = Util.groupToMap([]);
+    expect(groups[0]).eqls([]);
   });
 
   it('stat method', () => {

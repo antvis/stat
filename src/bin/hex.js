@@ -56,7 +56,7 @@ const Hex = function(dims, binWidth, ratio) {
     toBin(obj) {
       const self = this;
       const dims = self.getBinDims();
-      if (dims < 2) {
+      if (dims.length < 2) {
         throw 'the bin.rect method only support 2 dimenssion!';
       }
       const xDim = dims[0];

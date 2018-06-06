@@ -61,7 +61,7 @@ const Util = {
       }
     }
     if (max < min) {
-      max = min;
+      min = max;
     }
     return [ min, max ];
   },

@@ -38,10 +38,8 @@ module.exports = {
 
     Util.each(groups, function(sub, key) {
       const totalData = totalGroup ? totalGroup[key] : arr;
-      if (sub.length) {
-        const tmp = self.transform(sub, dim, totalData);
-        rst.push(tmp);
-      }
+      const tmp = self.transform(sub, dim, totalData);
+      rst.push(tmp);
     });
     return Util.merge(rst);
   }

@@ -35,7 +35,12 @@ describe('test summary', () => {
 
       expect(stat.dims.indexOf('..count')).equal(1);
     });
-
+    it('no data', function() {
+      const stat = summary.sum();
+      stat.init();
+      const nf = stat.exec([[]])[0];
+      expect(nf.length).equal(0);
+    });
     it('no dim', function() {
       const stat = summary.count();
       stat.init();
@@ -127,6 +132,20 @@ describe('test summary', () => {
 
     });
 
+    it('cumulative with number', function() {
+      const data1 = [
+        { x: 3, y: 4 },
+        { x: 1, y: 2 },
+        { x: 2, y: 1 }
+      ];
+      const stat = summary.cumulative('x*y');
+      stat.init();
+      const nfs = stat.exec([ data1 ]);
+      const nf = nfs[0];
+      expect(nf[2].y).equal(7);
+
+    });
+
     it('count cumulative', function() {
       const stat = summary.cumulative(summary.count('x'));
       stat.init();
@@ -160,9 +179,7 @@ describe('test summary', () => {
       expect(nf[0]['..proportion']).equal(0.125);
     });
 
-
     it('percent', function() {
-
       const stat = summary.percent('x*y');
       stat.init();
       const dataArray = Util.group(data, [ 'z' ]);
