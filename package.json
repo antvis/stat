@@ -30,7 +30,7 @@
     "lint-fix:tslint": "tslint -c tslint.json --fix 'src/**/*.ts' 'tests/**/*'",
     "coverage": "jest --coverage",
     "test": "jest",
-    "test-live": "DEBUG_MODE=1 jest --watch tests/unit/util-spec.ts",
+    "test-live": "DEBUG_MODE=1 jest --watch tests/unit/stat-spec.ts",
     "ci": "run-s build test coverage"
   },
   "husky": {
@@ -39,8 +39,6 @@
     }
   },
   "devDependencies": {
-    "@antv/color-util": "^2.0.3",
-    "@antv/g-canvas": "^0.4.0",
     "@types/jest": "^24.0.18",
     "husky": "^3.0.4",
     "jest": "^24.9.0",
@@ -56,6 +54,7 @@
   },
   "dependencies": {
     "@antv/util": "~2.0.0",
+    "simple-statistics": "~7.1.0",
     "tslib": "^1.10.0"
   },
   "lint-staged": {
